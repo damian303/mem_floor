@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta name="viewport" id="viewport"	content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>MEMS Login</title>
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+		<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+		<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+		<script src="d3.v3.min.js"></script>
+		<script type="text/javascript" charset="utf-8" src="cordova/cordova.js"></script>
+		<link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>
+
+<div id="home" data-role="page">
+    <div data-role="header">
+        <h1>Login</h1>
+    </div>
+
+	<div data-role="content" id="input_login">
+	   <form id="loginForm">
+        <div data-role="fieldcontain" class="ui-hide-label">
+            <input type="text" name="username" id="txt_username" value="" placeholder="Username" />
+        </div>
+        <div data-role="fieldcontain" class="ui-hide-label">        
+            <input type="password" name="password" id="txt_pwd" value="" placeholder="Password" />
+        </div>
+        <input type="submit" value="Login" id="btn_login" onclick="javascript:verifyLogin();">
+        </form>
+
+    </div>
+</div>
+	
+<div id="layout" data-role="page">
+    <div data-role="header">
+        <a href="#" data-icon="arrow-l" data-iconpos="left" data-rel="back" data-transition="slide" data-direction="reverse">Back</a>
+        <h1>MEM</h1>
+    </div>
+    <div data-role="content">
+		<div id='overView'></div>
+        <div id="svg" class="unselectable">
+			<img class="loader" src="imgs/loading_icon.gif">	
+		</div>
+    </div>
+	<div data-role="popup" id="dialog">
+		<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+		 <div data-role="header" data-theme="a">
+		  <h1>Info</h1>
+		 </div>
+		 <div data-role="content">
+		  <p id="info"></p>
+		 </div>
+	</div>
+   
+</div>
+
+  <!--  <div data-role="footer" style="position:absolute; bottom:0;width:100%;">
+        <h4>&copy; Micro Energy Monitor 2013</h4>
+    </div>
+-->
+</div>
+<script type="text/javascript" charset="utf-8" src="main.js"></script>
+</body>
+</html>

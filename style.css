@@ -1,0 +1,93 @@
+body {
+-webkit-touch-callout: none !important;
+}
+#user_id{
+position:absolute;
+width:auto;
+float:right;
+}
+.mems{}
+.loader{
+width:100%;
+height:auto;
+background-repeat:no-repeat;
+background-attachment:fixed;
+background-position:center; 
+}
+.sensor{
+font-size:30px;
+display:inline-block;
+height:50px;
+width:90%;
+line-height:50px;
+margin: 5% 5%;
+padding:5px 5px;
+border: 2px solid black;
+border-radius:3px;
+}
+.ui-page{
+height:90%;/*THis might cause a problem */
+}
+.icon{
+position:absolute;
+margin:5px;
+width:30px;
+height:30px;
+}
+.left{
+float:left;
+}
+.right{
+right:0;
+top:0;
+}
+.indicate{
+display:inline-block;
+float:right;
+height:95%;
+width:auto;
+margin-top:auto;
+margin-bottom:auto;
+}
+#svg{
+width:100%;
+display: block;
+margin-left: auto;
+margin-right: auto;
+}
+#overView{
+font-size:15px;
+}
+.popUp{
+position:absolute;
+width:50px;
+height:50px;
+background: green;
+}
+.popUpSVG{
+width:50px;
+height:50px;
+fill: green;
+stroke:black;
+}
+.graph{
+height:100px;
+width:100%;
+background:#D8D8FF;
+}
+.bars{
+fill:#3333CC;
+stroke:#3333CC;
+}
+.line{
+stroke:green;
+stroke-width:2px;
+fill:none;
+}
+.unselectable {
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}

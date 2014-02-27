@@ -80,7 +80,7 @@ function getData(){
 						'client_ID':client_ID,
 						'store_ID':store_ID
 					},
-					dataType   : 'json',
+					dataType   : 'text',
 					success : function(response) {      
 						console.log(response);
 						if(response!=="FAIL"){   
@@ -91,8 +91,8 @@ function getData(){
 							alert("Data retrieval fail!");
 						}
 					},
-					error : function(xhr, type) {
-						alert('server error occurred @ getData :'+type);
+					error : function (XMLHttpRequest, textStatus, errorThrown) {
+						alert('server error occurred @ getData :'+textStatus+'<br/>'+errorThrown+'<br/>'+XMLHttpRequest.status);
 					}
 			  }); 
 }

@@ -1,11 +1,11 @@
 var data=[], kwh;
 var sensorLayout;
-sensorAmount =3;
+sensorAmount = 3;
 
 $( document ).bind( "mobileinit", function() {
 	// Make your jQuery Mobile framework configuration changes here! 
 	$.mobile.allowCrossDomainPages = false;// THis doesnt help delete it ?
-	});
+});
 	
 $('#home').live('pageinit', function(event, ui) {
          // FILL IN FORM IF DATA EXISTS
@@ -17,20 +17,20 @@ $('#home').live('pageinit', function(event, ui) {
 		}
     });
 
-	$("a[data-role=tab]").each(function () {
-		var anchor = $(this);
-		anchor.bind("click", function () {
-			$.mobile.changePage(anchor.attr("href"), {
-				transition: "none",
-				changeHash: false
-			});
-			return false;
+$("a[data-role=tab]").each(function () {
+	var anchor = $(this);
+	anchor.bind("click", function () {
+		$.mobile.changePage(anchor.attr("href"), {
+			transition: "none",
+			changeHash: false
 		});
+		return false;
 	});
-	
-	$("div[data-role=page]").bind("pagebeforeshow", function (e, data) {
-		$.mobile.silentScroll(0);
-	});
+});
+
+$("div[data-role=page]").bind("pagebeforeshow", function (e, data) {
+	$.mobile.silentScroll(0);
+});
 	
 function verifyLogin(){     
     var uname=document.getElementById("txt_username").value;
@@ -60,7 +60,7 @@ function verifyLogin(){
                 }
             },
             error : function(xhr, type) {
-                alert('server error occurred '+xhr.status+' '+type);
+                alert('server error occurred @ login'+xhr.status+' '+type);
             }
       });   
 }
@@ -92,7 +92,7 @@ function getData(){
 						}
 					},
 					error : function(xhr, type) {
-						alert('server error occurred :'+type);
+						alert('server error occurred @ getData :'+type);
 					}
 			  }); 
 }

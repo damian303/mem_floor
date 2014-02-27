@@ -80,7 +80,7 @@ function getData(){
 						'client_ID':client_ID,
 						'store_ID':store_ID
 					},
-					dataType   : 'text',
+					dataType   : 'json',
 					success : function(response) {      
 						console.log(response);
 						if(response!=="FAIL"){   

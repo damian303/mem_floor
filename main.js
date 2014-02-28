@@ -35,7 +35,7 @@ $("div[data-role=page]").bind("pagebeforeshow", function (e, data) {
 function verifyLogin(){     
     var uname=document.getElementById("txt_username").value;
     var pwd=document.getElementById("txt_pwd").value;   
-	
+	console.log("logging on");
       $.ajax({
             type : 'POST',          
             url : 'http://microenergymonitor.com/app/checkLogin.php', // php script URL          
@@ -54,6 +54,7 @@ function verifyLogin(){
 					window.localStorage.setItem("store_ID", data.store_ID);
 			
 					window.location.href = ('#layout');// Change to tab page defaulting to layout
+					console.log("Logged in as "+data.username);
 					getData();
                 } else {                   
                     alert("Wrong username or password");
@@ -86,7 +87,7 @@ function getData(){
 						console.log(response);
 						if(response!=="FAIL"){   
 							data=$.parseJSON(response);
-							console.log("Success");
+							console.log("Data Success");
 							//getOverview();
 							getLayout(data);
 						} else {                   

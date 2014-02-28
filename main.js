@@ -8,13 +8,14 @@ $( document ).bind( "mobileinit", function() {
 });
 	
 $('#home').live('pageinit', function(event, ui) {
-         // FILL IN FORM IF DATA EXISTS
+        /* // FILL IN FORM IF DATA EXISTS
 		var username = window.localStorage.getItem("username");
 		var password = window.localStorage.getItem("password");
 		if(username!=null && password!=null){
 			$("#txt_username").val(username);
 			$("#txt_pwd").val(password);
 		}
+		*/
     });
 
 $("a[data-role=tab]").each(function () {
@@ -35,7 +36,7 @@ $("div[data-role=page]").bind("pagebeforeshow", function (e, data) {
 function verifyLogin(){     
     var uname=document.getElementById("txt_username").value;
     var pwd=document.getElementById("txt_pwd").value;   
-	console.log("logging on");
+	console.log("logging on"+uname+" "+pwd);
       $.ajax({
             type : 'POST',          
             url : 'http://microenergymonitor.com/app/checkLogin.php', // php script URL          

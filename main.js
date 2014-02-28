@@ -36,7 +36,7 @@ $("div[data-role=page]").bind("pagebeforeshow", function (e, data) {
 function verifyLogin(){     
     var uname=document.getElementById("txt_username").value;
     var pwd=document.getElementById("txt_pwd").value;   
-	console.log("logging on"+uname+" "+pwd);
+
       $.ajax({
             type : 'POST',          
             url : 'http://microenergymonitor.com/app/checkLogin.php', // php script URL    
@@ -67,7 +67,7 @@ function verifyLogin(){
 						console.log("textStatus :"+textStatus);
 						console.log("XMLHttpRequest :"+XMLHttpRequest);
 						console.log("errorThrown :"+errorThrown);
-			alert('server error occurred @ login textStatus:'+textStatus+'<br/>errorThrown'+errorThrown+'XML<br/>'+XMLHttpRequest.status);
+			alert('server error occurred @ login textStatus:'+textStatus+' errorThrown'+errorThrown+'XML '+XMLHttpRequest.status);
             }
       });   
 }
@@ -106,7 +106,7 @@ function getData(){
 						console.log("textStatus :"+textStatus);
 						console.log("XMLHttpRequest :"+XMLHttpRequest);
 						console.log("errorThrown :"+errorThrown);
-						alert('server error occurred @ getData textStatus:'+textStatus+'<br/>errorThrown'+errorThrown+'XML<br/>'+XMLHttpRequest.status);
+						alert('server error occurred @ getData textStatus:'+textStatus+' errorThrown'+errorThrown+'XML '+XMLHttpRequest.status);
 					}
 			  }); 
 }

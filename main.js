@@ -8,14 +8,14 @@ $( document ).bind( "mobileinit", function() {
 });
 	
 $('#home').live('pageinit', function(event, ui) {
-        /* // FILL IN FORM IF DATA EXISTS
+         // FILL IN FORM IF DATA EXISTS
 		var username = window.localStorage.getItem("username");
 		var password = window.localStorage.getItem("password");
 		if(username!=null && password!=null){
 			$("#txt_username").val(username);
 			$("#txt_pwd").val(password);
 		}
-		*/
+		
     });
 
 $("a[data-role=tab]").each(function () {
@@ -39,7 +39,9 @@ function verifyLogin(){
 	console.log("logging on"+uname+" "+pwd);
       $.ajax({
             type : 'POST',          
-            url : 'http://microenergymonitor.com/app/checkLogin.php', // php script URL          
+            url : 'http://microenergymonitor.com/app/checkLogin.php', // php script URL    
+			timeout: 30000,
+			cache: false,
             data:{
                 'username':uname,
                 'password':pwd
@@ -61,9 +63,11 @@ function verifyLogin(){
                     alert("Wrong username or password");
                 }
             },
-            error : function(xhr, type) {
-                alert('server error occurred @ login'+xhr.status+' '+type);
-				
+            error : function (XMLHttpRequest, textStatus, errorThrown) {
+						console.log("textStatus :"+textStatus);
+						console.log("XMLHttpRequest :"+XMLHttpRequest);
+						console.log("errorThrown :"+errorThrown);
+			alert('server error occurred @ login textStatus:'+textStatus+'<br/>errorThrown'+errorThrown+'XML<br/>'+XMLHttpRequest.status);
             }
       });   
 }
@@ -84,6 +88,8 @@ function getData(){
 						'store_ID':store_ID
 					},
 					dataType   : 'text',
+					timeout: 30000,
+					cache: false,
 					success : function(response) {      
 						console.log(response);
 						if(response!=="FAIL"){   

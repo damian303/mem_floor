@@ -36,21 +36,19 @@ $("div[data-role=page]").bind("pagebeforeshow", function (e, data) {
 function verifyLogin(){     
     var uname=document.getElementById("txt_username").value;
     var pwd=document.getElementById("txt_pwd").value;   
+	var url = "http://microenergymonitor.com/app/checkLogin.php";
+	var params = "username="+uname+"&password="+pwd;
+	var http = new XMLHttpRequest();
+		http.open("POST", url, true);
 
-      $.ajax({
-            type : 'POST',          
-            url : 'http://microenergymonitor.com/app/checkLogin.php', // php script URL    
-			timeout: 30000,
-			cache: false,
-            data:{
-                'username':uname,
-                'password':pwd
-            },
-			dataType:"json",
-            success : function(data) {  
-				data= data;
-				
-                if(data!=="FAIL"){
+		//Send the proper header information along with the request
+		http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+		http.onreadystatechange = function() {//Call a function when the state changes.
+			if(http.readyState == 4 && http.status == 200) {
+				if(http.responseText!="FAIL"){
+					data=$.parseJSON(http.responseText);
+		
 					window.localStorage.setItem("username", data.username);
 					window.localStorage.setItem("password", data.password);
 					window.localStorage.setItem("client_ID", data.client_ID);
@@ -59,17 +57,12 @@ function verifyLogin(){
 					window.location.href = ('#layout');// Change to tab page defaulting to layout
 					console.log("Logged in as "+data.username);
 					getData();
-                } else {                   
-                    alert("Wrong username or password");
-                }
-            },
-            error : function (XMLHttpRequest, textStatus, errorThrown) {
-						console.log("textStatus :"+textStatus);
-						console.log("XMLHttpRequest :"+XMLHttpRequest);
-						console.log("errorThrown :"+errorThrown);
-			alert('server error occurred @ login textStatus:'+textStatus+' errorThrown'+errorThrown+'XML '+XMLHttpRequest.status);
-            }
-      });   
+				}
+				
+			}
+		}
+		http.send(params);
+	  
 }
 
 function getData(){
@@ -78,37 +71,25 @@ function getData(){
 		var client_ID = window.localStorage.getItem("client_ID");
 		var store_ID = window.localStorage.getItem("store_ID");
 
-		$("#userLabel").html(username);
+		var url = "http://microenergymonitor.com/app/allData.php";
+		var params = "client_ID="+client_ID+"&store_ID="+store_ID;
 		
-		$.ajax({// THis bit gets the actual Data
-					type : 'POST',          
-					url : 'http://microenergymonitor.com/app/allData.php', // php script URL          
-					data:{
-						'client_ID':client_ID,
-						'store_ID':store_ID
-					},
-					dataType   : 'text',
-					timeout: 30000,
-					cache: false,
-					success : function(response) {      
-						console.log(response);
-						if(response!=="FAIL"){   
-							data=$.parseJSON(response);
-							console.log("Data Success");
-							//getOverview();
-							getLayout(data);
-						} else {                   
-							alert("Data retrieval fail!");
-							console.log("Data retrieval fail!");
-						}
-					},
-					error : function (XMLHttpRequest, textStatus, errorThrown) {
-						console.log("textStatus :"+textStatus);
-						console.log("XMLHttpRequest :"+XMLHttpRequest);
-						console.log("errorThrown :"+errorThrown);
-						alert('server error occurred @ getData textStatus:'+textStatus+' errorThrown'+errorThrown+'XML '+XMLHttpRequest.status);
-					}
-			  }); 
+		var http = new XMLHttpRequest();
+		http.open("POST", url, true);
+
+		//Send the proper header information along with the request
+		http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+		http.onreadystatechange = function() {//Call a function when the state changes.
+			if(http.readyState == 4 && http.status == 200) {
+				if(http.responseText!="FAIL"){
+					data=$.parseJSON(http.responseText);
+					console.log("Got data :"+data);
+					getLayout(data);
+				}
+			}
+		}
+		http.send(params);
 }
 
 

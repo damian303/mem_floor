@@ -61,6 +61,7 @@ function verifyLogin(){
             },
             error : function(xhr, type) {
                 alert('server error occurred @ login'+xhr.status+' '+type);
+				
             }
       });   
 }
@@ -85,14 +86,19 @@ function getData(){
 						console.log(response);
 						if(response!=="FAIL"){   
 							data=$.parseJSON(response);
+							console.log("Success");
 							//getOverview();
 							getLayout(data);
 						} else {                   
 							alert("Data retrieval fail!");
+							console.log("Data retrieval fail!");
 						}
 					},
 					error : function (XMLHttpRequest, textStatus, errorThrown) {
-						alert('server error occurred @ getData :'+textStatus+'<br/>'+errorThrown+'<br/>'+XMLHttpRequest.status);
+						console.log("textStatus :"+textStatus);
+						console.log("XMLHttpRequest :"+XMLHttpRequest);
+						console.log("errorThrown :"+errorThrown);
+						alert('server error occurred @ getData textStatus:'+textStatus+'<br/>errorThrown'+errorThrown+'XML<br/>'+XMLHttpRequest.status);
 					}
 			  }); 
 }

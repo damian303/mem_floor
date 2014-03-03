@@ -92,7 +92,7 @@ function getData(){
 			}
 			else
 			{
-				$("#svg").html("ERROR :"+htttp.statusText);
+				$("#svg").html("ERROR :"+http.statusText);
 			}
 		}
 		http.send(params);

@@ -92,9 +92,8 @@ function getData(){
 			}
 			else
 			{
-				$("#svg").html("ERROR :"+http.statusText+"<br/> Trying again..."+attempt);
-				attempt++;
-				getData();
+				$("#svg").html("ERROR :"+http.statusText+ " --- " + http.responseText+" -- "+http.status);
+			
 			}
 		}
 		http.send(params);

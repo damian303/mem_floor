@@ -1,7 +1,7 @@
 var data=[], kwh;
 var sensorLayout;
-sensorAmount = 3;
-
+var sensorAmount = 3;
+var attempt = 1;
 $( document ).bind( "mobileinit", function() {
 	// Make your jQuery Mobile framework configuration changes here! 
 	$.mobile.allowCrossDomainPages = false;// THis doesnt help delete it ?
@@ -92,7 +92,9 @@ function getData(){
 			}
 			else
 			{
-				$("#svg").html("ERROR :"+http.statusText);
+				$("#svg").html("ERROR :"+http.statusText+"<br/> Trying again..."+attempt);
+				attempt++;
+				getData();
 			}
 		}
 		http.send(params);

@@ -81,12 +81,18 @@ function getData(){
 		http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
 		http.onreadystatechange = function() {//Call a function when the state changes.
-			if(http.readyState == 4 && http.status == 200) {
-				if(http.responseText!="FAIL"){
-					data=$.parseJSON(http.responseText);
-					console.log("Got data :"+data);
-					getLayout(data);
+			if(http.readyState == 4){
+				if(http.status==200	|| http.status == 0) {
+					if(http.responseText!="FAIL"){
+						data=$.parseJSON(http.responseText);
+						console.log("Got data :"+data);
+						getLayout(data);
+					}
 				}
+			}
+			else
+			{
+				$("#svg").html("ERROR :"+htttp.statusText);
 			}
 		}
 		http.send(params);
